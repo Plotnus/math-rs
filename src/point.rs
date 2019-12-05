@@ -52,6 +52,18 @@ mod tests {
     use crate::vector::Vec3;
 
     #[test]
+    fn zero() {
+        assert_eq!(Vec3::zero(), Vec3::new(0.0, 0.0, 0.0));
+    }
+    #[test]
+    fn ones() {
+        assert_eq!(Vec3::ones(), Vec3::new(1.0, 1.0, 1.0));
+    }
+    #[test]
+    fn uniform() {
+        assert_eq!(Vec3::uniform(42.0), Vec3::new(42.0, 42.0, 42.0));
+    }
+    #[test]
     fn add_vec3d() {
         assert_eq!(Point::new(2.0, 2.0, 2.0), Point::ones() + Vec3::ones());
     }
@@ -59,7 +71,5 @@ mod tests {
     fn add_ref_vec3d() {
         let v = Vec3::new(1.0,1.0,1.0);
         assert_eq!(Point::new(2.0, 2.0, 2.0), Point::ones() + &v);
-
-        println!("{:?}", v);
     }
 }
