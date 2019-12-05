@@ -68,8 +68,6 @@ mod tests {
         assert_eq!(expected, result);
     }
 
-    // something to notice about the following test that can be viewed as bad is
-    // that the test is not independent of other fun
     #[test]
     fn sub_vec3() {
         assert_eq!(
@@ -78,4 +76,25 @@ mod tests {
         );
     }
 
+    #[test]
+    fn i_hat() {
+        assert_eq!(
+            Vec3::i_hat(),
+            Vec3::new(1.0, 0.0, 0.0)
+        );
+    }
+    #[test]
+    fn j_hat() {
+        assert_eq!(
+            Vec3::j_hat(),
+            Vec3::new(0.0, 1.0, 0.0)
+        );
+    }
+    #[test]
+    fn k_hat() {
+        assert_eq!(
+            Vec3::k_hat(),
+            Vec3::new(0.0, 0.0, 1.0)
+        );
+    }
 }
