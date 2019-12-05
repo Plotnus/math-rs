@@ -18,7 +18,18 @@ impl Point3d {
     }
 }
 impl core::ops::Add<Vec3d> for Point3d {
+    type Output = Point3d;
     fn add(self, v: Vec3d) -> Point3d {
+        Point3d {
+            x: self.x + v.x,
+            y: self.x + v.y,
+            z: self.z + v.z,
+        }
+    }
+}
+impl core::ops::Add<&Vec3d> for Point3d {
+    type Output = Point3d;
+    fn add(self, v: &Vec3d) -> Point3d {
         Point3d {
             x: self.x + v.x,
             y: self.x + v.y,
@@ -33,7 +44,14 @@ mod tests {
     use crate::vector::Vec3d;
 
     #[test]
-    fn point3d_add_vec3d() {
+    fn add_vec3d() {
         assert_eq!(Point3d::new(2.0, 2.0, 2.0), Point3d::ONES + Vec3d::ONES);
+    }
+    #[test]
+    fn point3d_add_ref_vec3d() {
+        let v = Vec3d::new(1.0,1.0,1.0);
+        assert_eq!(Point3d::new(2.0, 2.0, 2.0), Point3d::ONES + &v);
+
+        println!("{:?}", v);
     }
 }
