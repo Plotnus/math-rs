@@ -5,32 +5,34 @@ struct _Point2d {
     y: f32,
 }
 #[derive(Debug, PartialEq)]
-struct Point3d {
+struct Point {
     x: f32,
     y: f32,
     z: f32,
 }
-impl Point3d {
-    pub const ZERO: Point3d = Point3d { x: 0.0, y: 0.0, z: 0.0 };
-    pub const ONES: Point3d = Point3d { x: 1.0, y: 1.0, z: 1.0 };
-    pub fn new(x: f32, y: f32, z: f32) -> Point3d {
-        Point3d {x, y, z}
+impl Point {
+    pub const ZERO: Point = Point { x: 0.0, y: 0.0, z: 0.0 };
+    pub const ONES: Point = Point { x: 1.0, y: 1.0, z: 1.0 };
+    pub fn new(x: f32, y: f32, z: f32) -> Point {
+        Point {x, y, z}
     }
 }
-impl core::ops::Add<Vec3d> for Point3d {
-    type Output = Point3d;
-    fn add(self, v: Vec3d) -> Point3d {
-        Point3d {
+
+// implementing the core ops for Point
+impl core::ops::Add<Vec3d> for Point {
+    type Output = Point;
+    fn add(self, v: Vec3d) -> Point {
+        Point {
             x: self.x + v.x,
             y: self.x + v.y,
             z: self.z + v.z,
         }
     }
 }
-impl core::ops::Add<&Vec3d> for Point3d {
-    type Output = Point3d;
-    fn add(self, v: &Vec3d) -> Point3d {
-        Point3d {
+impl core::ops::Add<&Vec3d> for Point {
+    type Output = Point;
+    fn add(self, v: &Vec3d) -> Point {
+        Point {
             x: self.x + v.x,
             y: self.x + v.y,
             z: self.z + v.z,
@@ -40,17 +42,17 @@ impl core::ops::Add<&Vec3d> for Point3d {
 
 #[cfg(test)]
 mod tests {
-    use crate::point::Point3d;
+    use crate::point::Point;
     use crate::vector::Vec3d;
 
     #[test]
     fn add_vec3d() {
-        assert_eq!(Point3d::new(2.0, 2.0, 2.0), Point3d::ONES + Vec3d::ONES);
+        assert_eq!(Point::new(2.0, 2.0, 2.0), Point::ONES + Vec3d::ONES);
     }
     #[test]
     fn point3d_add_ref_vec3d() {
         let v = Vec3d::new(1.0,1.0,1.0);
-        assert_eq!(Point3d::new(2.0, 2.0, 2.0), Point3d::ONES + &v);
+        assert_eq!(Point::new(2.0, 2.0, 2.0), Point::ONES + &v);
 
         println!("{:?}", v);
     }
