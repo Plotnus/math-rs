@@ -1,9 +1,5 @@
 use crate::vector::Vec3;
 
-struct _Point2d {
-    x: f32,
-    y: f32,
-}
 #[derive(Debug, PartialEq)]
 struct Point {
     x: f32,
@@ -11,8 +7,6 @@ struct Point {
     z: f32,
 }
 impl Point {
-    pub const ZERO: Point = Point { x: 0.0, y: 0.0, z: 0.0 };
-    pub const ONES: Point = Point { x: 1.0, y: 1.0, z: 1.0 };
     pub const fn new(x: f32, y: f32, z: f32) -> Point {
         Point {x, y, z}
     }
