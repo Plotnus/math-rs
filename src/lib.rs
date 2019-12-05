@@ -1,5 +1,5 @@
-mod vector;
-mod point;
+pub mod vector;
+pub mod point;
 
 // We use `Rad` for our internal structure since this is the default for trig ops
 #[derive(Copy,Clone, PartialEq, Debug)]

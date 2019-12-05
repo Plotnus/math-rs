@@ -60,7 +60,7 @@ impl core::ops::Sub<Vec3> for Vec3 {
 
 #[cfg(test)]
 mod tests {
-    use crate::vector::Vec3;
+    use super::*;
     #[test]
     fn mul_f32() {
         let expected = Vec3::new(0.0, 0.0, 0.0);
