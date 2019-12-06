@@ -1,11 +1,27 @@
 [ ] see if way to have trait that just is iterable, then we can do blanket std::core::ops for each elem
 [ ] list core::ops to impl for Vec3
-    [ ] `+` Add
-    [ ] `+=` AddAssign
-    [ ] `\` Div
-    [ ] `\=` DivAssign
-    [ ] `*` Mul
-    [ ] `*=` MulAssign
-    [ ] `-` Neg
-[ ] list core::ops to impl for Point
+    [ ] `+` Add (Vec3, Vec3)
+    [ ] `+=` AddAssign (Vec3, Vec3)
+    [ ] `+` Sub (Vec3, Vec3)
+    [ ] `+=` SubAssign (Vec3, Vec3)
+    // Scaling
+    [ ] `/` Div (Eg: Vec3, f32)
+    [ ] `/=` DivAssign (Vec3, f32)
+    [ ] `*` Mul (Vec3, f32)
+    [ ] `*=` MulAssign (Vec3, f32)
+    // Invert
+    [ ] `-` Neg (Vec3)
+[ ] list core::ops to impl for Point,Vec3
+    [ ] `+` Add (Point, Vec3)
+    [ ] `+=` AddAssign (Point, Vec3)
+    [ ] `+` Sub (Point, Vec3)
+    [ ] `+=` SubAssign (Point, Vec3)
+    // Scaling - scaling a position makes no sense
+    // Invert - 
+    [ ] `-` Neg (Vec3)
+    // Sub
+    [ ] `-` Sub (Point, Point) -> Vec3
+
+[ ] For vectors it's just a vector in a coordinate space, and a point in a coordinate space
+    
 [ ] fix compilation warnings

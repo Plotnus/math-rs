@@ -35,16 +35,6 @@ impl core::ops::Add<Vec3> for Point {
         }
     }
 }
-impl core::ops::Add<&Vec3> for Point {
-    type Output = Point;
-    fn add(self, v: &Vec3) -> Point {
-        Point {
-            x: self.x + v.x,
-            y: self.x + v.y,
-            z: self.z + v.z,
-        }
-    }
-}
 
 #[cfg(test)]
 mod tests {
@@ -66,10 +56,5 @@ mod tests {
     #[test]
     fn add_vec3d() {
         assert_eq!(Point::new(2.0, 2.0, 2.0), Point::ones() + Vec3::ones());
-    }
-    #[test]
-    fn add_ref_vec3d() {
-        let v = Vec3::new(1.0,1.0,1.0);
-        assert_eq!(Point::new(2.0, 2.0, 2.0), Point::ones() + &v);
     }
 }
