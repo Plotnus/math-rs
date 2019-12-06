@@ -1,4 +1,11 @@
 [ ] see if way to have trait that just is iterable, then we can do blanket std::core::ops for each elem
 [ ] list core::ops to impl for Vec3
+    [ ] `+` Add
+    [ ] `+=` AddAssign
+    [ ] `\` Div
+    [ ] `\=` DivAssign
+    [ ] `*` Mul
+    [ ] `*=` MulAssign
+    [ ] `-` Neg
 [ ] list core::ops to impl for Point
 [ ] fix compilation warnings
