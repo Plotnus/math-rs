@@ -35,10 +35,10 @@ impl Vec3 {
     }
 }
 
-impl core::ops::Mul<f32> for Vec3 {
-    type Output = Vec3;
-    fn mul(self, s: f32) -> Vec3 {
-        Vec3 {
+impl std::ops::Mul<f32> for Vec3 {
+    type Output = Self;
+    fn mul(self, s: f32) -> Self {
+        Self {
             x: self.x * s,
             y: self.y * s,
             z: self.z * s,
@@ -46,16 +46,42 @@ impl core::ops::Mul<f32> for Vec3 {
     }
 }
 
-impl core::ops::Sub<Vec3> for Vec3 {
-    type Output = Vec3;
-    fn sub(self, rhs: Vec3) -> Vec3 {
-        Vec3 {
+impl std::ops::Add for Vec3 {
+    type Output = Self;
+    fn add(self, rhs: Self) -> Vec3 {
+        Self {
+            x: self.x + rhs.x,
+            y: self.y + rhs.y,
+            z: self.z + rhs.z,
+        }
+    }
+}
+
+impl std::ops::AddAssign for Vec3 {
+    fn add_assign(&mut self, rhs: Self) {
+        self.x += rhs.x;
+        self.y += rhs.y;
+    }
+}
+
+impl std::ops::Sub for Vec3 {
+    type Output = Self;
+    fn sub(self, rhs: Self) -> Self {
+        Self {
             x: self.x - rhs.x,
             y: self.y - rhs.y,
             z: self.z - rhs.z,
         }
     }
 }
+// A space R2
+// ntuple
+// basic-vector
+// struct R1;
+// struct R2;
+//Point<T,R1>
+//Point<T,R2>
+//Vector<T,D1>
 
 
 #[cfg(test)]
