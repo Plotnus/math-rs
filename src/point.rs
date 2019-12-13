@@ -1,4 +1,4 @@
-use crate::vector::Vec3;
+use crate::vec3::Vec3;
 
 #[derive(Debug, PartialEq)]
 struct Point {
@@ -39,7 +39,7 @@ impl core::ops::Add<Vec3> for Point {
 #[cfg(test)]
 mod tests {
     use crate::point::Point;
-    use crate::vector::Vec3;
+    use crate::vec3::Vec3;
 
     #[test]
     fn zero() {

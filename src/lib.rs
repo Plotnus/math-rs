@@ -1,4 +1,4 @@
-pub mod vector;
+pub mod vec3;
 pub mod point;
 pub mod lerp;
 

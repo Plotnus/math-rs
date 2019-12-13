@@ -1,6 +1,7 @@
 [ ] see if way to have trait that just is iterable, then we can do blanket std::core::ops for each elem
 [ ] interpolation
     [ ] what to do about reference and primitives and copy eg `f32` vs `Vec2`
+    [ ] maybe organize interpolation traits into interpolation.rs or a folder?
 [ ] list core::ops to impl for Vec3
     [x][ ] `+` Add (Vec3, Vec3)
     [ ][ ] `+=` AddAssign (Vec3, Vec3)
