@@ -74,6 +74,16 @@ impl std::ops::Sub for Vec3 {
         }
     }
 }
+
+impl crate::lerp::Lerp for Vec3 {
+    fn lerp(&self, rhs: &Self, t: f32) -> Self {
+        Vec3 {
+            x: self.x.lerp(&rhs.x, t),
+            y: self.y.lerp(&rhs.y, t),
+            z: self.z.lerp(&rhs.z, t),
+        }
+    }
+}
 // A space R2
 // ntuple
 // basic-vector
@@ -122,5 +132,14 @@ mod tests {
             Vec3::k_hat(),
             Vec3::new(0.0, 0.0, 1.0)
         );
+    }
+    #[test]
+    fn lerp() {
+        use crate::lerp::Lerp;
+        let a = Vec3::new(-1.0, -2.0, -3.0);
+        let b = Vec3::new(1.0, 2.0, 3.0);
+        assert_eq!(Vec3::new(-1.0, -2.0, -3.0), a.lerp(&b, 0.0));
+        assert_eq!(Vec3::new(0.0, 0.0, 0.0), a.lerp(&b, 0.5));
+        assert_eq!(Vec3::new(1.0, 2.0, 3.0), a.lerp(&b, 1.0));
     }
 }
