@@ -1,3 +1,4 @@
+use std::ops::{Add, AddAssign, Sub, SubAssign, Neg, Mul, MulAssign}; 
 #[derive(Debug, PartialEq)]
 pub struct Vec3 {
     pub x: f32,
@@ -84,7 +85,7 @@ impl Vec3 {
     }
 }
 
-impl std::ops::Add for Vec3 {
+impl Add for Vec3 {
     type Output = Self;
     fn add(self, rhs: Self) -> Self {
         Self {
@@ -95,8 +96,7 @@ impl std::ops::Add for Vec3 {
     }
 }
 
-
-impl std::ops::AddAssign for Vec3 {
+impl AddAssign for Vec3 {
     fn add_assign(&mut self, rhs: Self) {
         self.x += rhs.x;
         self.y += rhs.y;
@@ -104,7 +104,7 @@ impl std::ops::AddAssign for Vec3 {
     }
 }
 
-impl std::ops::Sub for Vec3 {
+impl Sub for Vec3 {
     type Output = Self;
     fn sub(self, rhs: Self) -> Self {
         Self {
@@ -115,7 +115,7 @@ impl std::ops::Sub for Vec3 {
     }
 }
 
-impl std::ops::SubAssign for Vec3 {
+impl SubAssign for Vec3 {
     fn sub_assign(&mut self, rhs: Self) {
         self.x -= rhs.x;
         self.y -= rhs.y;
@@ -123,7 +123,7 @@ impl std::ops::SubAssign for Vec3 {
     }
 }
 
-impl std::ops::Neg for Vec3 {
+impl Neg for Vec3 {
     type Output = Self;
     fn neg(self) -> Self {
         Self {
@@ -134,7 +134,7 @@ impl std::ops::Neg for Vec3 {
     }
 }
 
-impl std::ops::Mul<f32> for Vec3 {
+impl Mul<f32> for Vec3 {
     type Output = Self;
     fn mul(self, s: f32) -> Self {
         Self {
@@ -145,7 +145,7 @@ impl std::ops::Mul<f32> for Vec3 {
     }
 }
 
-impl std::ops::Mul<f32> for &Vec3 {
+impl Mul<f32> for &Vec3 {
     type Output = Vec3;
     fn mul(self, rhs: f32) -> Vec3 {
         Vec3 {
@@ -156,7 +156,7 @@ impl std::ops::Mul<f32> for &Vec3 {
     }
 }
 
-impl std::ops::MulAssign<f32> for Vec3 {
+impl MulAssign<f32> for Vec3 {
     fn mul_assign(&mut self, rhs: f32) {
         self.x *= rhs;
         self.y *= rhs;
