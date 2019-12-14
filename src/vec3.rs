@@ -5,6 +5,7 @@ pub struct Vec3 {
     pub z: f32,
 }
 
+// block for associated fn
 impl Vec3 {
     pub const fn new(x: f32, y: f32, z: f32) -> Vec3 {
         Vec3 { x, y, z}
@@ -17,7 +18,6 @@ impl Vec3 {
     pub const fn uniform(u: f32) -> Vec3 {
         Vec3::new(u,u,u)
     }
-
     pub const fn ones() -> Vec3 {
         Vec3::uniform(1.0)
     }
@@ -37,6 +37,10 @@ impl Vec3 {
     pub const fn k_hat() -> Vec3 {
         Vec3::new(0.0, 0.0, 1.0)
     }
+
+}
+// block for methods
+impl Vec3 {
 }
 
 impl std::ops::Mul<f32> for Vec3 {
