@@ -11,10 +11,6 @@ impl Vec3 {
         Vec3 { x, y, z}
     }
 
-    pub fn lerp(a: &Vec3, b: &Vec3, t: f32) -> Vec3 {
-        a * (1.0 - t) + b * t
-    }
-
     pub const fn uniform(u: f32) -> Vec3 {
         Vec3::new(u,u,u)
     }
@@ -41,6 +37,33 @@ impl Vec3 {
     pub fn dot(a: &Vec3, b: &Vec3) -> f32 {
         a.x * b.x + a.y * b.y + a.z * b.z
     }
+
+    pub fn lerp(a: &Vec3, b: &Vec3, t: f32) -> Vec3 {
+        a * (1.0 - t) + b * t
+    }
+
+    // decided to have the default lerp as unclamed since we do
+    // additional operations for the `_clamped` version
+    // this follows the natural progression of building things from
+    // their pieces
+    pub fn lerp_clamped(a: &Vec3, b: &Vec3, t: f32) -> Vec3 {
+        Vec3::lerp(a, b, t.clamp(0.0, 1.0))
+    }
+
+    // TODO: implement
+    // slerp_clamped
+    // slerp
+    // clamped_magnitude
+    // normalized
+
+    // We do not implement directions here since that's a higher
+    // level decision. Eg. it can vary from engine to software.
+    // It would be nice to make it easy to transform from one to
+    // another tho
+    // up, down, back, forward, left, right
+    // equals
+    // normalized_checked
+    // normalized_fast
 }
 
 impl Vec3 {
