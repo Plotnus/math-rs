@@ -10,6 +10,10 @@ impl Vec3 {
         Vec3 { x, y, z}
     }
 
+    pub fn lerp(a: &Vec3, b: &Vec3, t: f32) -> Vec3 {
+        a * (1.0 - t) + b * t
+    }
+
     pub const fn uniform(u: f32) -> Vec3 {
         Vec3::new(u,u,u)
     }
@@ -46,9 +50,20 @@ impl std::ops::Mul<f32> for Vec3 {
     }
 }
 
+impl std::ops::Mul<f32> for &Vec3 {
+    type Output = Vec3;
+    fn mul(self, s: f32) -> Vec3 {
+        Vec3 {
+            x: self.x * s,
+            y: self.y * s,
+            z: self.z * s,
+        }
+    }
+}
+
 impl std::ops::Add for Vec3 {
     type Output = Self;
-    fn add(self, rhs: Self) -> Vec3 {
+    fn add(self, rhs: Self) -> Self {
         Self {
             x: self.x + rhs.x,
             y: self.y + rhs.y,
@@ -56,6 +71,7 @@ impl std::ops::Add for Vec3 {
         }
     }
 }
+
 
 impl std::ops::AddAssign for Vec3 {
     fn add_assign(&mut self, rhs: Self) {
@@ -75,15 +91,6 @@ impl std::ops::Sub for Vec3 {
     }
 }
 
-impl crate::lerp::Lerp for Vec3 {
-    fn lerp(&self, rhs: &Self, t: f32) -> Self {
-        Vec3 {
-            x: self.x.lerp(&rhs.x, t),
-            y: self.y.lerp(&rhs.y, t),
-            z: self.z.lerp(&rhs.z, t),
-        }
-    }
-}
 // A space R2
 // ntuple
 // basic-vector
@@ -135,11 +142,10 @@ mod tests {
     }
     #[test]
     fn lerp() {
-        use crate::lerp::Lerp;
         let a = Vec3::new(-1.0, -2.0, -3.0);
         let b = Vec3::new(1.0, 2.0, 3.0);
-        assert_eq!(Vec3::new(-1.0, -2.0, -3.0), a.lerp(&b, 0.0));
-        assert_eq!(Vec3::new(0.0, 0.0, 0.0), a.lerp(&b, 0.5));
-        assert_eq!(Vec3::new(1.0, 2.0, 3.0), a.lerp(&b, 1.0));
+        assert_eq!(Vec3::new(-1.0, -2.0, -3.0), Vec3::lerp(&a, &b, 0.0));
+        assert_eq!(Vec3::new(0.0, 0.0, 0.0), Vec3::lerp(&a, &b, 0.5));
+        assert_eq!(Vec3::new(1.0, 2.0, 3.0), Vec3::lerp(&a, &b, 1.0));
     }
 }
