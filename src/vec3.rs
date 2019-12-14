@@ -1,5 +1,3 @@
-use crate::vec4::Vec4;
-
 #[derive(Debug, PartialEq)]
 pub struct Vec3 {
     pub x: f32,
@@ -40,16 +38,26 @@ impl Vec3 {
         Vec3::new(0.0, 0.0, 1.0)
     }
 
+    pub fn dot(a: &Vec3, b: &Vec3) -> f32 {
+        a.x * b.x + a.y * b.y + a.z * b.z
+    }
 }
-// block for methods
+
 impl Vec3 {
-    pub fn to_homogenous(&self) -> Vec4 {
-        Vec4 {
-            x: self.x,
-            y: self.y,
-            z: self.z,
-            w: 0.0,
-        }
+    fn mag_squared(&self) -> f32 {
+        Vec3::dot(&self, &self)
+    }
+
+    fn mag(&self) -> f32 {
+        self.mag_squared().sqrt()
+    }
+
+    fn len_sq(&self) -> f32 {
+        Vec3::dot(&self, &self)
+    }
+
+    fn len(&self) -> f32 {
+        self.len_sq().sqrt()
     }
 }
 

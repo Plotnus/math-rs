@@ -1,3 +1,4 @@
+#![feature(clamp)]
 pub mod vec2;
 pub mod vec3;
 pub mod vec4;
@@ -8,9 +9,7 @@ pub mod point;
 pub struct Rad(f32);
 impl From<Deg> for Rad {
     fn from(d: Deg) -> Rad {
-        use std::f32::consts::PI;
-        const DEG_TO_RAD: f32 = PI / 180.0;
-        Rad(DEG_TO_RAD * d.0)
+        Rad(d.0.to_radians())
     }
 }
 
@@ -30,9 +29,7 @@ pub fn cos(r: Rad) -> f32 {
 pub struct Deg(f32);
 impl From<Rad> for Deg {
     fn from(r: Rad) -> Deg {
-        use std::f32::consts::PI;
-        const RAD_TO_DEG: f32 = 180.0 / PI;
-        Deg(RAD_TO_DEG * r.0)
+        Deg(r.0.to_degrees())
     }
 }
 
