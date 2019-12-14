@@ -3,7 +3,7 @@ pub mod point;
 
 // We use `Rad` for our internal structure since this is the default for trig ops
 #[derive(Copy,Clone, PartialEq, Debug)]
-struct Rad(f32);
+pub struct Rad(f32);
 impl From<Deg> for Rad {
     fn from(d: Deg) -> Rad {
         use std::f32::consts::PI;
@@ -11,10 +11,12 @@ impl From<Deg> for Rad {
         Rad(DEG_TO_RAD * d.0)
     }
 }
-fn sin(r: Rad) -> f32 {
+
+pub fn sin(r: Rad) -> f32 {
     r.0.sin()
 }
-fn cos(r: Rad) -> f32 {
+
+pub fn cos(r: Rad) -> f32 {
     r.0.cos()
 }
 
@@ -23,7 +25,7 @@ fn cos(r: Rad) -> f32 {
 
 // Degrees should only be used for interfacing with end users
 #[derive(Copy,Clone, PartialEq, Debug)]
-struct Deg(f32);
+pub struct Deg(f32);
 impl From<Rad> for Deg {
     fn from(r: Rad) -> Deg {
         use std::f32::consts::PI;
@@ -53,5 +55,23 @@ mod tests {
         assert_eq!(Rad(0.0), Deg(0.0).into());
         assert_eq!(Rad(std::f32::consts::PI), Deg(180.0).into());
         assert_eq!(Rad(2.0 * std::f32::consts::PI), Deg(360.0).into());
+    }
+
+    #[test]
+    fn cos() {
+        use std::f32::consts::{PI, FRAC_PI_2};
+        let angles = [ 0.0, FRAC_PI_2, PI, -FRAC_PI_2];
+        for angle in angles.iter() {
+            assert_eq!(angle.cos(), crate::cos(Rad(*angle)));
+        }
+    }
+
+    #[test]
+    fn sin() {
+        use std::f32::consts::{PI, FRAC_PI_2};
+        let angles = [ 0.0, FRAC_PI_2, PI, -FRAC_PI_2];
+        for angle in angles.iter() {
+            assert_eq!(angle.sin(), crate::sin(Rad(*angle)));
+        }
     }
 }
