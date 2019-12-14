@@ -1,4 +1,6 @@
+pub mod vec2;
 pub mod vec3;
+pub mod vec4;
 pub mod point;
 
 // We use `Rad` for our internal structure since this is the default for trig ops
