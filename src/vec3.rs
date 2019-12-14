@@ -147,12 +147,20 @@ impl std::ops::Mul<f32> for Vec3 {
 
 impl std::ops::Mul<f32> for &Vec3 {
     type Output = Vec3;
-    fn mul(self, s: f32) -> Vec3 {
+    fn mul(self, rhs: f32) -> Vec3 {
         Vec3 {
-            x: self.x * s,
-            y: self.y * s,
-            z: self.z * s,
+            x: self.x * rhs,
+            y: self.y * rhs,
+            z: self.z * rhs,
         }
+    }
+}
+
+impl std::ops::MulAssign<f32> for Vec3 {
+    fn mul_assign(&mut self, rhs: f32) {
+        self.x *= rhs;
+        self.y *= rhs;
+        self.z *= rhs;
     }
 }
 
