@@ -91,15 +91,16 @@ impl std::ops::Sub for Vec3 {
     }
 }
 
-// A space R2
-// ntuple
-// basic-vector
-// struct R1;
-// struct R2;
-//Point<T,R1>
-//Point<T,R2>
-//Vector<T,D1>
-
+impl std::ops::Neg for Vec3 {
+    type Output = Self;
+    fn neg(self) -> Self {
+        Self {
+            x: -self.x,
+            y: -self.y,
+            z: -self.z,
+        }
+    }
+}
 
 #[cfg(test)]
 mod tests {
@@ -112,7 +113,7 @@ mod tests {
     }
 
     #[test]
-    fn sub_vec3() {
+    fn sub() {
         assert_eq!(
             Vec3::new(1.0, 0.0, -1.0),
             Vec3::new(100.0, 50.0, 25.0) - Vec3::new(99.0, 50.0, 26.0)
@@ -126,6 +127,7 @@ mod tests {
             Vec3::new(1.0, 0.0, 0.0)
         );
     }
+
     #[test]
     fn j_hat() {
         assert_eq!(
@@ -133,6 +135,7 @@ mod tests {
             Vec3::new(0.0, 1.0, 0.0)
         );
     }
+
     #[test]
     fn k_hat() {
         assert_eq!(
@@ -140,6 +143,7 @@ mod tests {
             Vec3::new(0.0, 0.0, 1.0)
         );
     }
+
     #[test]
     fn lerp() {
         let a = Vec3::new(-1.0, -2.0, -3.0);
@@ -148,4 +152,12 @@ mod tests {
         assert_eq!(Vec3::new(0.0, 0.0, 0.0), Vec3::lerp(&a, &b, 0.5));
         assert_eq!(Vec3::new(1.0, 2.0, 3.0), Vec3::lerp(&a, &b, 1.0));
     }
+
+    #[test]
+    fn neg() {
+        let v = Vec3::new(1.0, 2.0, 3.0);
+        assert_eq!(Vec3::new(-1.0, -2.0, -3.0), -v);
+        assert_eq!(Vec3::new(0.0, 0.0, 0.0), -Vec3::new(0.0,0.0,0.0));
+    }
+
 }
