@@ -1,4 +1,4 @@
-use std::ops::{Add, AddAssign, Sub, SubAssign, Neg, Mul, MulAssign}; 
+use std::ops::{Add, AddAssign, Sub, SubAssign, Neg, Mul, MulAssign, Div, DivAssign}; 
 #[derive(Debug, PartialEq)]
 pub struct Vec3 {
     pub x: f32,
@@ -163,6 +163,29 @@ impl MulAssign<f32> for Vec3 {
         self.z *= rhs;
     }
 }
+
+impl Div<f32> for Vec3 {
+    type Output = Vec3;
+    fn div(self, rhs: f32) -> Self::Output {
+        let recip = rhs.recip();
+        Self::Output {
+            x: self.x * recip,
+            y: self.y * recip,
+            z: self.z * recip,
+        }
+    }
+}
+
+impl DivAssign<f32> for Vec3 {
+    fn div_assign(&mut self, rhs: f32) {
+        let recip = rhs.recip();
+        self.x *= recip;
+        self.y *= recip;
+        self.z *= recip;
+    }
+}
+
+
 
 
 #[cfg(test)]
