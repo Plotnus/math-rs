@@ -1,4 +1,5 @@
 use crate::vec3::Vec3;
+use std::ops::{Add, AddAssign, Sub, SubAssign};
 
 #[derive(Debug, PartialEq)]
 pub struct Point {
@@ -25,8 +26,7 @@ impl Point {
     }
 }
 
-// implementing the core ops for Point
-impl core::ops::Add<Vec3> for Point {
+impl Add<Vec3> for Point {
     type Output = Point;
     fn add(self, v: Vec3) -> Point {
         Point {
@@ -34,6 +34,71 @@ impl core::ops::Add<Vec3> for Point {
             y: self.x + v.y,
             z: self.z + v.z,
         }
+    }
+}
+
+impl AddAssign<Vec3> for Point {
+    fn add_assign(&mut self, rhs: Vec3) {
+        self.x += rhs.x;
+        self.y += rhs.y;
+        self.z += rhs.z;
+    }
+}
+
+impl AddAssign<&Vec3> for Point {
+    fn add_assign(&mut self, rhs: &Vec3) {
+        self.x += rhs.x;
+        self.y += rhs.y;
+        self.z += rhs.z;
+    }
+}
+
+impl Sub for Point {
+    type Output = Vec3;
+    fn sub(self, rhs: Self) -> Self::Output {
+        Self::Output {
+            x: self.x - rhs.x,
+            y: self.y - rhs.y,
+            z: self.z - rhs.z,
+        }
+    }
+}
+
+impl Sub<Vec3> for Point {
+    type Output = Self;
+    fn sub(self, rhs: Vec3) -> Self::Output {
+        Self::Output {
+            x: self.x - rhs.x,
+            y: self.y - rhs.y,
+            z: self.z - rhs.z,
+        }
+    }
+}
+
+impl Sub<&Vec3> for Point {
+    type Output = Self;
+    fn sub(self, rhs: &Vec3) -> Self::Output {
+        Self::Output {
+            x: self.x - rhs.x,
+            y: self.y - rhs.y,
+            z: self.z - rhs.z,
+        }
+    }
+}
+
+impl SubAssign<Vec3> for Point {
+    fn sub_assign(&mut self, rhs: Vec3) {
+        self.x -= rhs.x;
+        self.y -= rhs.y;
+        self.z -= rhs.z;
+    }
+}
+
+impl SubAssign<&Vec3> for Point {
+    fn sub_assign(&mut self, rhs: &Vec3) {
+        self.x -= rhs.x;
+        self.y -= rhs.y;
+        self.z -= rhs.z;
     }
 }
 
