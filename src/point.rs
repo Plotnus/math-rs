@@ -6,6 +6,7 @@ pub struct Point {
     pub y: f32,
     pub z: f32,
 }
+
 impl Point {
     pub const fn new(x: f32, y: f32, z: f32) -> Point {
         Point {x, y, z}
