@@ -1,6 +1,6 @@
-struct Vec4 {
-    x: f32,
-    y: f32,
-    z: f32,
-    w: f32,
+pub struct Vec4 {
+    pub x: f32,
+    pub y: f32,
+    pub z: f32,
+    pub(crate)w: f32,
 }

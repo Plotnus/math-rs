@@ -1,3 +1,5 @@
+use crate::vec4::Vec4;
+
 #[derive(Debug, PartialEq)]
 pub struct Vec3 {
     pub x: f32,
@@ -41,6 +43,14 @@ impl Vec3 {
 }
 // block for methods
 impl Vec3 {
+    pub fn to_homogenous(&self) -> Vec4 {
+        Vec4 {
+            x: self.x,
+            y: self.y,
+            z: self.z,
+            w: 0.0,
+        }
+    }
 }
 
 impl std::ops::Mul<f32> for Vec3 {
