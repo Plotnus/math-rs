@@ -9,11 +9,11 @@ pub struct Vec3 {
 // block for associated fn
 impl Vec3 {
     pub const fn new(x: f32, y: f32, z: f32) -> Vec3 {
-        Vec3 { x, y, z}
+        Vec3 { x, y, z }
     }
 
     pub const fn uniform(u: f32) -> Vec3 {
-        Vec3::new(u,u,u)
+        Vec3::new(u, u, u)
     }
     pub const fn ones() -> Vec3 {
         Vec3::uniform(1.0)
@@ -185,9 +185,6 @@ impl DivAssign<f32> for Vec3 {
     }
 }
 
-
-
-
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -208,26 +205,17 @@ mod tests {
 
     #[test]
     fn i_hat() {
-        assert_eq!(
-            Vec3::i_hat(),
-            Vec3::new(1.0, 0.0, 0.0)
-        );
+        assert_eq!(Vec3::new(1.0, 0.0, 0.0), Vec3::i_hat());
     }
 
     #[test]
     fn j_hat() {
-        assert_eq!(
-            Vec3::j_hat(),
-            Vec3::new(0.0, 1.0, 0.0)
-        );
+        assert_eq!(Vec3::new(0.0, 1.0, 0.0), Vec3::j_hat());
     }
 
     #[test]
     fn k_hat() {
-        assert_eq!(
-            Vec3::k_hat(),
-            Vec3::new(0.0, 0.0, 1.0)
-        );
+        assert_eq!(Vec3::new(0.0, 0.0, 1.0), Vec3::k_hat()) ;
     }
 
     #[test]
@@ -243,7 +231,6 @@ mod tests {
     fn neg() {
         let v = Vec3::new(1.0, 2.0, 3.0);
         assert_eq!(Vec3::new(-1.0, -2.0, -3.0), -v);
-        assert_eq!(Vec3::new(0.0, 0.0, 0.0), -Vec3::new(0.0,0.0,0.0));
+        assert_eq!(Vec3::new(0.0, 0.0, 0.0), -Vec3::new(0.0, 0.0, 0.0));
     }
-
 }
