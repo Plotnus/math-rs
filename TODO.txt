@@ -4,17 +4,16 @@
     [ ] maybe organize interpolation traits into interpolation.rs or a folder?
 [ ] list core::ops to impl for Vec3
     [x][ ] `+` Add (Vec3, Vec3)
-    [ ][ ] `+=` AddAssign (Vec3, Vec3)
+    [x][ ] `+=` AddAssign (Vec3, Vec3)
     [x][ ] `-` Sub (Vec3, Vec3)
-    [ ][ ] `-=` SubAssign (Vec3, Vec3)
+    [x][ ] `-=` SubAssign (Vec3, Vec3)
+    [x][ ]`-` Neg (Vec3)
     // Scaling
-    [ ][ ] `/` Div (Eg: Vec3, f32)
-    [ ][ ] `/=` DivAssign (Vec3, f32)
     [x][ ] `*` Mul (Vec3, f32)
-    [ ][ ] `*=` MulAssign (Vec3, f32)
-    [ ] Is there a way to do this for all Scalar?
-    // Invert
-    [ ][ ]`-` Neg (Vec3)
+    [x][ ] `*=` MulAssign (Vec3, f32)
+    [x][ ] `/` Div (Eg: Vec3, f32)
+    [x][ ] `/=` DivAssign (Vec3, f32)
+    [ ] Is there a way to do this for all Scalar? (eg f32, and f64)
 [ ] list core::ops to impl for Point,Vec3
     [x][ ] `+` Add (Point, Vec3)
     [ ][ ] `+=` AddAssign (Point, Vec3)
