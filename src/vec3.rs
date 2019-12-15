@@ -57,6 +57,10 @@ impl Vec3 {
     // clamped_magnitude
     // normalized
 
+    pub fn normalized(v: &Self) -> Self {
+        v  / v.mag()
+    }
+
     // We do not implement directions here since that's a higher
     // level decision. Eg. it can vary from engine to software.
     // It would be nice to make it easy to transform from one to
@@ -171,7 +175,7 @@ impl MulAssign<f32> for Vec3 {
     }
 }
 
-impl Div<f32> for Vec3 {
+impl Div<f32> for &Vec3 {
     type Output = Vec3;
     fn div(self, rhs: f32) -> Self::Output {
         let recip = rhs.recip();
@@ -239,5 +243,15 @@ mod tests {
         let v = Vec3::new(1.0, 2.0, 3.0);
         assert_eq!(Vec3::new(-1.0, -2.0, -3.0), -v);
         assert_eq!(Vec3::new(0.0, 0.0, 0.0), -Vec3::new(0.0, 0.0, 0.0));
+    }
+
+    #[test]
+    fn normalized() {
+        let v = Vec3::new(5.0, 0.0, 0.0);
+        assert_eq!(Vec3::i_hat(), Vec3::normalized(&v));
+        let v = Vec3::new(0.0, 3.0, 0.0);
+        assert_eq!(Vec3::j_hat(), Vec3::normalized(&v));
+        let v = Vec3::new(0.0, 0.0, -24.0);
+        assert_eq!(-Vec3::k_hat(), Vec3::normalized(&v));
     }
 }
