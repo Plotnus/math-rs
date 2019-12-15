@@ -68,12 +68,12 @@ impl Vec3 {
 }
 
 impl Vec3 {
-    fn mag_squared(&self) -> f32 {
+    fn mag_sq(&self) -> f32 {
         Vec3::dot(&self, &self)
     }
 
     fn mag(&self) -> f32 {
-        self.mag_squared().sqrt()
+        self.mag_sq().sqrt()
     }
 
     fn len_sq(&self) -> f32 {
@@ -82,6 +82,13 @@ impl Vec3 {
 
     fn len(&self) -> f32 {
         self.len_sq().sqrt()
+    }
+
+    // in most cases other should be normalized
+    // if other is not normalized this returns the equivalent of a projection
+    // onto `b.mag() * b.to_unit_vector()`
+    fn projected_onto(&self, other: &Vec3) -> Vec3 {
+        other * Vec3::dot(self, other)
     }
 }
 
